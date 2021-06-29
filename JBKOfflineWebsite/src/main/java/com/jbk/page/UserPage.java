@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import com.jbk.ObjectRepository.UserPageObjectRepository;
 
@@ -19,7 +20,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-public class UserPage extends UserPageObjectRepository{
+public class UserPage extends UserPageObjectRepository {
 
 	WebDriver driver;
 
@@ -27,8 +28,6 @@ public class UserPage extends UserPageObjectRepository{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
-	
 
 	public ArrayList<String> printtable() {
 		ArrayList<String> actual = new ArrayList<String>();
@@ -67,6 +66,7 @@ public class UserPage extends UserPageObjectRepository{
 		return expected;
 	}
 
+	// Print name of Male users
 	public boolean printMaleusers() throws BiffException, IOException {
 		FileInputStream fis = new FileInputStream("C:\\Users\\PC\\eclipse-workspace\\JBKOfflineWebsite\\data.xls");
 		Workbook woorkbook = Workbook.getWorkbook(fis);
@@ -103,6 +103,7 @@ public class UserPage extends UserPageObjectRepository{
 
 	}
 
+	// print name of male users using Hashmap
 	public boolean male() throws BiffException, IOException {
 		FileInputStream fis = new FileInputStream("C:\\Users\\PC\\eclipse-workspace\\JBKOfflineWebsite\\data.xls");
 		Workbook woorkbook = Workbook.getWorkbook(fis);
@@ -139,6 +140,7 @@ public class UserPage extends UserPageObjectRepository{
 		return false;
 	}
 
+	// print name of users from maharashtra
 	public boolean verifyUsersFromMaharashtra() throws BiffException, IOException {
 		FileInputStream fis = new FileInputStream("C:\\Users\\PC\\eclipse-workspace\\JBKOfflineWebsite\\data.xls");
 		Workbook workbook = Workbook.getWorkbook(fis);
@@ -389,6 +391,7 @@ public class UserPage extends UserPageObjectRepository{
 	}
 
 	public void verifyMobile() {
+
 		for (int i = 0; i < mobile.size(); i++) {
 			String m = mobile.get(i).getText();
 			if (m.length() != 10) {
@@ -399,6 +402,28 @@ public class UserPage extends UserPageObjectRepository{
 		}
 
 	}
+
+	public ArrayList<Boolean> verifyMobile2() {
+		ArrayList<Boolean> al = new ArrayList<Boolean>();
+		boolean flag = false;
+		for (int i = 0; i < mobile.size(); i++) {
+			String m = mobile.get(i).getText();
+			if (m.length() != 10) {
+				System.out.println(" Incorrect Mobile number");
+				al.add(flag);
+			} else
+				System.out.println("Correct Mobile number");
+			al.add(!flag);
+		}
+		return al;
+	}
+
+	/*
+	 * public void mobilelength() { boolean flag = false; SoftAssert sa = new
+	 * SoftAssert(); for (int i = 0; i < mobile.size(); i++) { String m =
+	 * mobile.get(i).getText(); if (m.length() != 10) { sa.assertTrue(flag); } else
+	 * sa.assertTrue(!flag); } sa.assertAll(); }
+	 */
 
 	public boolean verifyCourse() throws BiffException, IOException {
 		FileInputStream fis = new FileInputStream("C:\\Users\\PC\\eclipse-workspace\\JBKOfflineWebsite\\data.xls");
@@ -481,7 +506,7 @@ public class UserPage extends UserPageObjectRepository{
 		System.out.println("expected" + expected);
 		return false;
 	}
-	
+
 	public boolean cancelbtn() {
 		addUserButton.click();
 		cancelBtn.click();
@@ -496,7 +521,7 @@ public class UserPage extends UserPageObjectRepository{
 		System.out.println("expected" + expected);
 		return false;
 	}
-	
+
 	public boolean verifydetails() {
 		addUserButton.click();
 		usernameAddUser.sendKeys("shreya");
@@ -508,13 +533,13 @@ public class UserPage extends UserPageObjectRepository{
 		select.selectByValue("Maharashtra");
 		passwordAddUser.sendKeys("shreya777");
 		submitAddUser.click();
-		
+
 		Alert al = driver.switchTo().alert();
 		String actual = al.getText();
 		al.accept();
-		
+
 		String expected = "User Added Successfully. You can not see added user.";
-		
+
 		if (actual.equals(expected)) {
 			System.out.println("actual" + actual);
 			System.out.println("expected" + expected);

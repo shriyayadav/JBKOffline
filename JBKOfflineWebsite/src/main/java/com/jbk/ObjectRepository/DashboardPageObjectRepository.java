@@ -36,5 +36,8 @@ public class DashboardPageObjectRepository {
 	
 	@FindBy(xpath="//li[3]/a/span")
 	public WebElement userpagelink;
+	
+	@FindBy(xpath="//li[4]/a/span")
+	public WebElement operatorpagelink;
 
 }

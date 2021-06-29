@@ -24,6 +24,7 @@ public class TestBase {
 		prop = new Properties();
 		prop.load(fis);
 		val = prop.getProperty(propName);
+
 		return val;
 	}
 
@@ -46,10 +47,9 @@ public class TestBase {
 		return driver;
 
 	}
-	
-	public LoginPage loadLoginPage()
-	{
-		lp=new LoginPage(driver);
+
+	public LoginPage loadLoginPage() {
+		lp = new LoginPage(driver);
 		return lp;
 	}
 }

@@ -21,6 +21,12 @@ public class DashboardPage extends DashboardPageObjectRepository {
 		userpagelink.click();
 		return new UserPage(driver);
 	}
+	
+	public OperatorPage navigateToOperatorPage(WebDriver driver)
+	{
+		operatorpagelink.click();
+		return new OperatorPage(driver);
+	}
 
 	public boolean verifyTitle() {
 		String actual = driver.getTitle();
