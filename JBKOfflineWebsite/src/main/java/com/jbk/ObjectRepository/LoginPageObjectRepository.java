@@ -3,7 +3,7 @@ package com.jbk.ObjectRepository;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPageObjectRepository {
+public class LoginPageObjectRepository extends PageBase{
 	
 	@FindBy(id = "email")
 	public WebElement email;

@@ -20,10 +20,12 @@ public class LoginPage extends LoginPageObjectRepository {
 		String actual_title = driver.getTitle();
 		String expected = "JavaByKiran | Log in";
 		if (actual_title.equals(expected)) {
-			System.out.println(actual_title + "  Title Match");
+//			System.out.println(actual_title + "  Title Match");
+			pagelogs().info(actual_title + " Title Match");
 			return true;
 		} else
-			System.out.println(expected + "  Title not Match");
+//			System.out.println(expected + "  Title not Match");
+			pagelogs().info(expected + "Title not Match");
 		return false;
 	}
 
@@ -35,10 +37,12 @@ public class LoginPage extends LoginPageObjectRepository {
 		String actual = email_error.getText();
 		String expected = "Please enter email";
 		if (actual.equals(expected)) {
-			System.out.println("Verify Blank email error message  " + actual);
+			//System.out.println("Verify Blank email error message  " + actual);
+			pagelogs().info("Verify Email Blank Error Message  "+actual);
 			return true;
 		} else
-			System.out.println("Not Verify Blank email  error message " + expected);
+			//System.out.println("Not Verify Blank email  error message " + expected);
+		pagelogs().info("Not Verify Email Blank Error Message  "+expected);
 		return false;
 
 	}

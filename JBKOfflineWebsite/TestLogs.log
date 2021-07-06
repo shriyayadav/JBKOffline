@@ -1,0 +1,4 @@
+2021-07-06 18:22:13,610  INFO [main] LoginPageTest:34 - 1st log
+  2021-07-06 19:47:46,224  INFO [main] LoginPageTest:34 - Verify the URL of Log In Page
+  2021-07-06 19:55:53,370  INFO [main] LoginPageTest:40 - verify the Blank Error Message of Email 
+  

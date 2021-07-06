@@ -104,6 +104,24 @@ public class UserPageTest extends TestBase {
 		sa.assertAll();
 		
 	}
+	
+	@Test
+	public void addUserData() throws BiffException, IOException  {
+		boolean al=up.addUserData();
+		SoftAssert sa=new SoftAssert();
+		
+		sa.assertAll();
+		
+	}
+	
+	@Test
+	public void verifyMobileDataThroughExcel() throws BiffException, IOException  {
+		boolean al=up.verifyMobileDataThroughExcel();
+		SoftAssert sa=new SoftAssert();
+		
+		sa.assertAll();
+		
+	}
 
 	@Test
 	public void verifyCourse() throws BiffException, IOException {

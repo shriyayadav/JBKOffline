@@ -3,7 +3,7 @@ package com.jbk.ObjectRepository;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MembershipPageObjectRepository {
+public class MembershipPageObjectRepository extends PageBase{
 	
 	@FindBy(xpath = "//b")
 	public WebElement headline;

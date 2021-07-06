@@ -5,7 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DashboardPageObjectRepository {
+public class DashboardPageObjectRepository extends PageBase{
 	
 	@FindBy(xpath = "//b[contains(text(),'Java By Kiran')]")
 	public WebElement text;

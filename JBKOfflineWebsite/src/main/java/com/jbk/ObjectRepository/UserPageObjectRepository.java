@@ -5,7 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class UserPageObjectRepository {
+public class UserPageObjectRepository extends PageBase{
 	
 	@FindBy(xpath = "//table[@class='table table-hover']")
 	public WebElement table;

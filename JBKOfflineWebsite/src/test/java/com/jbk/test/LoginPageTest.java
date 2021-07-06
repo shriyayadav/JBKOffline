@@ -31,11 +31,13 @@ public class LoginPageTest extends TestBase {
 
 	@Test
 	public void verifyURL() {
+		testlogs().info("Verify the URL of Log In Page & Test the Log In Page Title");
 		assertTrue(lp.verifyURL());
 	}
 
 	@Test
 	public void verifyBlankEmail() {
+		testlogs().info("verify the Blank Error Message of Email ");
 		assertTrue(lp.verifyBlankEmail());
 	}
 

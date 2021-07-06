@@ -1,6 +1,7 @@
 package com.jbk.page;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.jbk.ObjectRepository.UserPageObjectRepository;
 
+import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -548,6 +550,81 @@ public class UserPage extends UserPageObjectRepository {
 			System.out.println("actual" + actual);
 		System.out.println("expected" + expected);
 		return false;
+	}
+
+	public boolean addUserData() throws BiffException, IOException {
+		String actual = null;
+		String expected = null;
+		addUserButton.click();
+		for (int i = 1; i < 5; i++) {
+			usernameAddUser.sendKeys(getCellData("AddUser", i, 0));
+			System.out.print(usernameAddUser.getAttribute("value"));
+			mobileAddUser.sendKeys(getCellData("AddUser", i, 1));
+			System.out.print(mobileAddUser.getAttribute("value"));
+			emailAddUser.sendKeys(getCellData("AddUser", i, 2));
+			System.out.print(emailAddUser.getAttribute("value"));
+			courseAddUser.sendKeys(getCellData("AddUser", i, 3));
+			System.out.print(courseAddUser.getAttribute("value"));
+			if (getCellData("AddUser", i, 4).equals("Male")) {
+				MaleAddUser.click();
+				System.out.print(MaleAddUser.getAttribute("value"));
+			} else {
+				FemaleAddUser.click();
+				System.out.print(FemaleAddUser.getAttribute("value"));
+			}
+			Select select = new Select(stateAddUser);
+			select.selectByVisibleText(getCellData("AddUser", i, 5));
+			System.out.print(stateAddUser.getAttribute("value"));
+			passwordAddUser.sendKeys(getCellData("AddUser", i, 6));
+			System.out.print(passwordAddUser.getAttribute("value"));
+			submitAddUser.click();
+
+			Alert al = driver.switchTo().alert();
+			actual = al.getText();
+			al.accept();
+
+			expected = "User Added Successfully. You can not see added user.";
+
+		}
+		if (actual.equals(expected)) {
+			System.out.println("actual" + actual);
+			System.out.println("expected" + expected);
+			return true;
+		} else
+			System.out.println("actual" + actual);
+		System.out.println("expected" + expected);
+		return false;
+	}
+
+	private String getCellData(String sheetName, int row, int col) throws BiffException, IOException {
+		FileInputStream fis = new FileInputStream("C:\\Users\\PC\\git\\repository\\JBKOfflineWebsite\\AddUser.xls");
+		Workbook workbook = Workbook.getWorkbook(fis);
+		Sheet sheet = workbook.getSheet(sheetName);
+		Cell cell = sheet.getCell(col, row);
+		return cell.getContents();
+
+	}
+
+	public boolean verifyMobileDataThroughExcel() throws BiffException, IOException {
+
+		addUserButton.click();
+		String actual = null;
+		String expected = null;
+		for (int i = 0; i < 6; i++) {
+			mobileAddUser.sendKeys(getCellData("Mobile", i, 0));
+			actual = mobileAddUser.getAttribute("value");
+			expected = getCellData("Mobile", i, 1);
+		}
+
+		if (actual.equals(expected)) {
+			System.out.println("actual" + actual);
+			System.out.println("expected" + expected);
+			return true;
+		} else
+			System.out.println("actual" + actual);
+		System.out.println("expected" + expected);
+		return false;
+
 	}
 
 }
